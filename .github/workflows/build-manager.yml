@@ -98,6 +98,12 @@ jobs:
           if ($LASTEXITCODE) { exit $LASTEXITCODE }
       - name: Fetch locked extractor dependencies
         run: |
+              - name: Fetch locked extractor dependencies
+        run: |
+          cargo +1.99.1-x86_64-pc-windows-gnu fetch --locked --target aarch64-linux-android --manifest-path jailbreak-providers/ghostlock/extractor-native/Cargo.toml
+          if ($LASTEXITCODE) { exit $LASTEXITCODE }
+          cargo +1.99.1-x86_64-pc-windows-gnu fetch --locked --manifest-path jailbreak-providers/ghostlock/extractor-native/Cargo.toml
+          if ($LASTEXITCODE) { exit $LASTEXITCODE }
           cargo +1.99.1-x86_64-pc-windows-gnu fetch --locked --target aarch64-linux-android --manifest-path jailbreak-providers/ghostlock/extractor-native/Cargo.toml
           if ($LASTEXITCODE) { exit $LASTEXITCODE }
       - name: Build SDK and consumer
