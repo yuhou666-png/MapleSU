@@ -102,6 +102,11 @@ jobs:
           if ($LASTEXITCODE) { exit $LASTEXITCODE }
           cargo +1.99.1-x86_64-pc-windows-gnu fetch --locked --manifest-path jailbreak-providers/ghostlock/extractor-native/Cargo.toml
           if ($LASTEXITCODE) { exit $LASTEXITCODE }
+      - name: Build Shark plants
+        run: |
+          python jailbreak-providers/shark/build_plants.py --ndk "$env:ANDROID_HOME/ndk/28.2.13676358"
+          if ($LASTEXITCODE) { exit $LASTEXITCODE }
+
       - name: Build SDK and consumer
         run: ./gradlew.bat :maplesu-client:assembleRelease :maplesu-consumer:assembleDebug --no-daemon --no-build-cache --no-configuration-cache --max-workers=2
       - name: Build debug Manager
