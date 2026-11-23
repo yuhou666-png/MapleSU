@@ -102,6 +102,9 @@ jobs:
           if ($LASTEXITCODE) { exit $LASTEXITCODE }
           cargo +1.99.1-x86_64-pc-windows-gnu fetch --locked --manifest-path jailbreak-providers/ghostlock/extractor-native/Cargo.toml
           if ($LASTEXITCODE) { exit $LASTEXITCODE }
+      - name: Prime specgen host jars
+        run: ./gradlew.bat :manager:compileDebugKotlin --no-daemon --no-build-cache --no-configuration-cache --max-workers=2
+
       - name: Build Shark plants
         run: |
           python jailbreak-providers/shark/build_plants.py --ndk "$env:ANDROID_HOME/ndk/28.2.13676358"
